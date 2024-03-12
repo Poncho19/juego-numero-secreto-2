@@ -13,17 +13,24 @@ numeroSecreto = generarNumeroSecreto(rango);
 
 //Funcion botones
 function verificarIntento(){
+    //Captura el valor dado por el usuario en la caja de texto
     let numeroDadoUsuario = parseInt(document.getElementById('valorUsuario').value);
-    console.log(numeroSecreto);
-    console.log(numeroDadoUsuario);
-    console.log(numeroSecreto === numeroDadoUsuario);
+    if(numeroDadoUsuario === numeroSecreto){
+        asignarTextoElemento('p',"Acertaste el número");
+    }else{
+        if(numeroDadoUsuario > numeroSecreto){
+            asignarTextoElemento('p',"El numero secreto es menor");
+        }else{
+            asignarTextoElemento('p',"El numero secreto es mayor");
+        }
+    }    
     return;
 }
 
 function asignarTextoElemento(elemento, texto){
     let elementoHTML = document.querySelector(elemento);    //Objeto al cual se le coloca un texto
-    elementoHTML.innerHTML = texto;
-    return;                         //Se aplica un texto al elemento HTML
+    elementoHTML.innerHTML = texto;                         //Se aplica un texto al elemento HTML
+    return;                         
 }
 
 function generarNumeroSecreto(rango){
