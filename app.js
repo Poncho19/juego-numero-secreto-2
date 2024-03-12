@@ -7,11 +7,19 @@ asignarTextoElemento('p', `Indica un numero del 1 al ${rango}`);//Se aplica un m
 
 //Se genera el numero secreto del juego
 numeroSecreto = generarNumeroSecreto(rango);
-console.log(numeroSecreto);
+
 
 
 
 //Funcion botones
+function verificarIntento(){
+    let numeroDadoUsuario = parseInt(document.getElementById('valorUsuario').value);
+    console.log(numeroSecreto);
+    console.log(numeroDadoUsuario);
+    console.log(numeroSecreto === numeroDadoUsuario);
+    return;
+}
+
 function asignarTextoElemento(elemento, texto){
     let elementoHTML = document.querySelector(elemento);    //Objeto al cual se le coloca un texto
     elementoHTML.innerHTML = texto;
