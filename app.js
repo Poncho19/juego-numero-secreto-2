@@ -1,5 +1,6 @@
 let numeroSecreto = 0;
 let rango = 10;
+let intentos = 1;     //Cuenta el numero de intentos
 
 //Titulos
 asignarTextoElemento('h1', "Juego del número secreto");//Se le aplica un metodo al objeto titulo
@@ -16,8 +17,11 @@ function verificarIntento(){
     //Captura el valor dado por el usuario en la caja de texto
     let numeroDadoUsuario = parseInt(document.getElementById('valorUsuario').value);
     if(numeroDadoUsuario === numeroSecreto){
-        asignarTextoElemento('p',"Acertaste el número");
+        asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos == 1)? "intento":"intentos"}`);
     }else{
+        //Se aumenta el conteo de los intentos
+        intentos += 1;
+        //Despliega ayuda
         if(numeroDadoUsuario > numeroSecreto){
             asignarTextoElemento('p',"El numero secreto es menor");
         }else{
