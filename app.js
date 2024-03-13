@@ -18,6 +18,8 @@ function verificarIntento(){
     let numeroDadoUsuario = parseInt(document.getElementById('valorUsuario').value);
     if(numeroDadoUsuario === numeroSecreto){
         asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos == 1)? "intento":"intentos"}`);
+        //Se activa el boton nuevo juego
+        reiniciarJuego();
     }else{
         //Se aumenta el conteo de los intentos
         intentos += 1;
@@ -27,7 +29,21 @@ function verificarIntento(){
         }else{
             asignarTextoElemento('p',"El numero secreto es mayor");
         }
+        //Se limpia el valor en el cuadro de texto
+        clearBox();
     }    
+    return;
+}
+
+function clearBox(){//Funcion que limpia el texto de la caja input
+    let limpia = document.querySelector("#valorUsuario");
+    limpia.value = "";
+    return;
+}
+
+function reiniciarJuego(){
+    let activarBoton = document.getElementById("reiniciar");
+    activarBoton.removeAttribute("disabled");
     return;
 }
 
@@ -37,7 +53,7 @@ function asignarTextoElemento(elemento, texto){
     return;                         
 }
 
-function generarNumeroSecreto(rango){
+function generarNumeroSecreto(rango){//Funcion que genera un numero aleatorio
     let numeroAleatorio = parseInt(Math.random()*rango) + 1;
     return numeroAleatorio;
 }
