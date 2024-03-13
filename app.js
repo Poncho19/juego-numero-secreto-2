@@ -19,7 +19,7 @@ function verificarIntento(){
     if(numeroDadoUsuario === numeroSecreto){
         asignarTextoElemento('p',`Acertaste el número en ${intentos} ${(intentos == 1)? "intento":"intentos"}`);
         //Se activa el boton nuevo juego
-        reiniciarJuego();
+        activaBoton();
     }else{
         //Se aumenta el conteo de los intentos
         intentos += 1;
@@ -41,10 +41,26 @@ function clearBox(){//Funcion que limpia el texto de la caja input
     return;
 }
 
-function reiniciarJuego(){
-    let activarBoton = document.getElementById("reiniciar");
-    activarBoton.removeAttribute("disabled");
+function activaBoton(){
+    let activar = document.getElementById("reiniciar");
+    activar.removeAttribute("disabled");
     return;
+}
+
+function reiniciarJuego(){
+    let desactivar = document.querySelector("#reiniciar");
+    //desactivar boton de nuevo juego
+    desactivar.setAttribute("disabled",true);
+    //Mostrar mensajes
+    asignarTextoElemento('h1', "Juego del número secreto");//Se le aplica un metodo al objeto titulo
+    asignarTextoElemento('p', `Indica un numero del 1 al ${rango}`);//Se aplica un metodo al objeto parrafo
+    //limpiar caja de texto
+    clearBox();
+    //reiniciar contador
+    intentos = 1;
+    //generar numero secreto
+    numeroSecreto = generarNumeroSecreto(rango);
+    
 }
 
 function asignarTextoElemento(elemento, texto){
