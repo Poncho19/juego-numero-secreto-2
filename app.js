@@ -74,15 +74,19 @@ function generarNumeroSecreto(rango){//Funcion que genera un numero aleatorio
     let numeroAleatorio = parseInt(Math.random()*rango) + 1;
     console.log(numeroAleatorio);
     console.log(numerosSorteados);
-    //Se comprueba si esta el numero en el arreglo numerosSorteados
-    if(numerosSorteados.includes(numeroAleatorio)){
-        //Se genera nuevo número
-        numeroAleatorio = generarNumeroSecreto(rango);
-        return numeroAleatorio;        
+    //Si ya sorteamos todos los numeros
+    if(numerosSorteados.length == rango){
+        asignarTextoElemento("p","Ya se sortearon todos los numeros que tenemos");
     }else{
-        //Se guarda en el arreglo el numero generado
-        numerosSorteados.push(numeroAleatorio);
-        return numeroAleatorio;
-    }
-    
+        //Se comprueba si esta el numero en el arreglo numerosSorteados
+        if(numerosSorteados.includes(numeroAleatorio)){
+            //Se genera nuevo número
+            numeroAleatorio = generarNumeroSecreto(rango);
+            return numeroAleatorio;        
+        }else{
+            //Se guarda en el arreglo el numero generado
+            numerosSorteados.push(numeroAleatorio);
+            return numeroAleatorio;
+        }
+    }   
 }
