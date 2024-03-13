@@ -1,6 +1,7 @@
 let numeroSecreto = 0;
 let rango = 10;
-let intentos = 1;     //Cuenta el numero de intentos
+let intentos = 1;               //Cuenta el numero de intentos
+let numerosSorteados = [];     //Arreglo que guarda los numeros generados secretos para que no se repitan
 
 //Titulos
 asignarTextoElemento('h1', "Juego del número secreto");//Se le aplica un metodo al objeto titulo
@@ -71,5 +72,17 @@ function asignarTextoElemento(elemento, texto){
 
 function generarNumeroSecreto(rango){//Funcion que genera un numero aleatorio
     let numeroAleatorio = parseInt(Math.random()*rango) + 1;
-    return numeroAleatorio;
+    console.log(numeroAleatorio);
+    console.log(numerosSorteados);
+    //Se comprueba si esta el numero en el arreglo numerosSorteados
+    if(numerosSorteados.includes(numeroAleatorio)){
+        //Se genera nuevo número
+        numeroAleatorio = generarNumeroSecreto(rango);
+        return numeroAleatorio;        
+    }else{
+        //Se guarda en el arreglo el numero generado
+        numerosSorteados.push(numeroAleatorio);
+        return numeroAleatorio;
+    }
+    
 }
